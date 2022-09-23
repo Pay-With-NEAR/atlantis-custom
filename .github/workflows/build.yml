@@ -1,0 +1,29 @@
+---
+name: build
+on:
+  push:
+    branches:
+      - devops/*
+    tags:
+      - v*
+
+env:
+  CONTAINER_REGISTRY: eu.gcr.io
+  CONTAINER_REPOSITORY: atm-us-ops-651c/infra
+  PROJECT_NAME: atlantis-custom
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+      - uses: int128/kaniko-action@v1
+        with:
+          push: true
+          tags: ${{ steps.metadata.outputs.tags }}
+          cache: true
+          cache-repository: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_REPOSITORY }}/${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}:${{ github.ref }}
