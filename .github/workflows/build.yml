@@ -29,9 +29,16 @@ jobs:
       #     username: ${{ steps.gcloud.outputs.username }}
       #     password: ${{ steps.gcloud.outputs.password }}
       #     registry: eu.gcr.io
-      - uses: int128/kaniko-action@v1
+      # - uses: int128/kaniko-action@v1
+      #   with:
+      #     push: true
+      #     tags: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_REPOSITORY }}/${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}:${{ github.sha }}
+      #     cache: true
+      #     cache-repository: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_REPOSITORY }}/${{ env.PROJECT_NAME }}/cache
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@v4
         with:
-          push: true
-          tags: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_REPOSITORY }}/${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}:${{ github.sha }}
-          cache: true
-          cache-repository: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_REPOSITORY }}/${{ env.PROJECT_NAME }}/cache
+          name: ${{ env.CONTAINER_REPOSITORY }}/${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}:${{ github.sha }}
+          username: ${{ steps.gcloud.outputs.username }}
+          password: ${{ steps.gcloud.outputs.password }}
+          registry: eu.gcr.io
