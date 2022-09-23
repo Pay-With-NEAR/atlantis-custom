@@ -38,7 +38,7 @@ jobs:
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v4
         with:
-          name: ${{ env.CONTAINER_REPOSITORY }}/${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}:${{ github.sha }}
+          name: ${{ env.CONTAINER_REPOSITORY }}/${{ env.PROJECT_NAME }}:${{ github.sha }}
           username: ${{ steps.gcloud.outputs.username }}
           password: ${{ steps.gcloud.outputs.password }}
           registry: eu.gcr.io
