@@ -9,7 +9,7 @@ on:
 
 env:
   CONTAINER_REGISTRY: eu.gcr.io
-  CONTAINER_REPOSITORY: pay-with-near/infra
+  CONTAINER_REPOSITORY: phrasal-faculty-363013/infra
   PROJECT_NAME: atlantis-custom
 
 jobs:
