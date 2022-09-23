@@ -24,6 +24,6 @@ jobs:
       - uses: int128/kaniko-action@v1
         with:
           push: true
-          tags: ${{ steps.metadata.outputs.tags }}
+          tags: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_REPOSITORY }}/${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}:${{ github.ref }}
           cache: true
-          cache-repository: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_REPOSITORY }}/${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}:${{ github.ref }}
+          cache-repository: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_REPOSITORY }}/${{ env.PROJECT_NAME }}/cache
