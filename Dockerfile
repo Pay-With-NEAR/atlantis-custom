@@ -1,6 +1,6 @@
 FROM runatlantis/atlantis:v0.18.4
 RUN wget https://github.com/gruntwork-io/terragrunt/releases/download/v0.38.12/terragrunt_linux_amd64
-RUN wget https://github.com/transcend-io/terragrunt-atlantis-config/releases/download/v1.11.0/terragrunt-atlantis-config_1.15.0_linux_amd64.tar.gz
+RUN wget https://github.com/transcend-io/terragrunt-atlantis-config/releases/download/v1.15.0/terragrunt-atlantis-config_1.15.0_linux_amd64.tar.gz
 RUN tar xvzf terragrunt-atlantis-config_1.15.0_linux_amd64.tar.gz
 RUN mv terragrunt_linux_amd64 /usr/local/bin/terragrunt && rm -rf terragrunt_linux_amd64
 RUN mv terragrunt-atlantis-config_1.15.0_linux_amd64/terragrunt-atlantis-config_1.15.0_linux_amd64 /usr/local/bin/terragrunt-atlantis-config && rm -rf terragrunt-atlantis-config*
