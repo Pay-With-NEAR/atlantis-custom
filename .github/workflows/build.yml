@@ -16,11 +16,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - id: 'auth'
-        uses: 'google-github-actions/auth@v0'
+      - uses: actions/checkout@v3
+      - name: Login to gcloud registry
+        id: gcloud
+        uses: elgohr/gcloud-login-action@v1
         with:
-          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+          account_key: ${{ secrets.GCP_CREDENTIALS }}
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@v4
+        with:
+          name: myDocker/repository
+          username: ${{ steps.gcloud.outputs.username }}
+          password: ${{ steps.gcloud.outputs.password }}
+          registry: eu.gcr.io
       - uses: int128/kaniko-action@v1
         with:
           push: true
