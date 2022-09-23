@@ -9,7 +9,7 @@ on:
 
 env:
   CONTAINER_REGISTRY: eu.gcr.io
-  CONTAINER_REPOSITORY: atm-us-ops-651c/infra
+  CONTAINER_REPOSITORY: atm-us-ops-651c/pay-with-near/infra
   PROJECT_NAME: atlantis-custom
 
 jobs:
