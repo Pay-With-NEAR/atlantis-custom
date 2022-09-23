@@ -22,13 +22,13 @@ jobs:
         uses: elgohr/gcloud-login-action@v1
         with:
           account_key: ${{ secrets.GCP_CREDENTIALS }}
-      - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@v4
-        with:
-          name: myDocker/repository
-          username: ${{ steps.gcloud.outputs.username }}
-          password: ${{ steps.gcloud.outputs.password }}
-          registry: eu.gcr.io
+      # - name: Publish to Registry
+      #   uses: elgohr/Publish-Docker-Github-Action@v4
+      #   with:
+      #     name: myDocker/repository
+      #     username: ${{ steps.gcloud.outputs.username }}
+      #     password: ${{ steps.gcloud.outputs.password }}
+      #     registry: eu.gcr.io
       - uses: int128/kaniko-action@v1
         with:
           push: true
