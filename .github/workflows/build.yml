@@ -9,7 +9,7 @@ on:
 
 env:
   CONTAINER_REGISTRY: eu.gcr.io
-  CONTAINER_REPOSITORY: atm-us-ops-651c/pay-with-near/infra
+  CONTAINER_REPOSITORY: pay-with-near/infra
   PROJECT_NAME: atlantis-custom
 
 jobs:
@@ -32,6 +32,6 @@ jobs:
       - uses: int128/kaniko-action@v1
         with:
           push: true
-          tags: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_REPOSITORY }}/${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}:${{ github.ref }}
+          tags: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_REPOSITORY }}/${{ env.PROJECT_NAME }}/${{ env.PROJECT_NAME }}:${{ github.sha }}
           cache: true
           cache-repository: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_REPOSITORY }}/${{ env.PROJECT_NAME }}/cache
